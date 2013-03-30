@@ -33,7 +33,7 @@ desc "Build the site"
 task :site => ['_site']
 
 directory '_site'
-file '_site' => [INDEX] do
+file '_site' => [:index] do
    system('bin/jekyll')
 end
 
