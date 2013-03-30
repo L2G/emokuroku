@@ -65,21 +65,12 @@ task :default => :site
 private
 
 def generate_index_block(name, elements)
-   out = "<h2>#{name}</h2>\n<table>\n"
+   out = "<h2>#{name}</h2>\n"
 
-   elements.to_a.each_slice(5) do |row|
-      out += '<tr>'
-      row.each do |name|
-         out += "<td>:#{name}:</td>"
-      end
-      out +=  "</tr>\n<tr>"
-      row.each do |name|
-         out += "<td>#{name}</td>"
-      end
-      out += "</tr>\n"
+   elements.each do |name|
+      out += "<table><caption>#{name}</caption><td>:#{name}:</td></table>\n"
    end
-
-   out += "</table>\n"
+   out
 end
 
 # vim:ts=3:sw=3:et:
