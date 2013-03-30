@@ -1,31 +1,16 @@
 require 'gemoji'
+require 'yaml'
 
 # Set BOWLDERIZE true to omit middle fingers and potty-mouthed language
 BOWLDERIZE = false
-
 NSFW = %w( fu shit )
 
-theme = {
-    'Zodiac' => %w(
-        aries taurus gemini cancer leo virgo libra scorpius sagittarius
-        capricorn aquarius pisces
-    ),
-    'Ideographs' => %w(
-        accept congratulations secret
-        koko sa
-        u5272 u5408 u55b6 u6307 u6708 u6709 u6e80 u7121 u7533 u7981 u7a7a
-        white_flower ideograph_advantage
-    ),
-    'Hands' => %w(
-        +1 -1
-    )
-}
-
+theme = YAML.load_file('_themes.yml') 
 #############################################################################
 INDEX = 'index.html'
 
-task INDEX do
-   unless uptodate?(INDEX, ['Rakefile']) 
+task INDEX => ['_themes.yml'] do
+   unless uptodate?(INDEX, ['Rakefile', '_themes.yml']) 
 
       File.unlink(INDEX) if File.exist?(INDEX)
       File.open(INDEX, 'w') do |index|
@@ -34,6 +19,8 @@ task INDEX do
 layout: default
 title: emokuroku
 ---
+<h1>Emokuroku</h1>
+<p>An emoji catalog still in development. If it seems out of date by the time you get here, please try <a href="http://www.emoji-cheat-sheet.com/">Emoji Cheat Sheet</a>.</p>
          END_HEAD
 
          emoji_list = Emoji.names
