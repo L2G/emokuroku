@@ -58,7 +58,7 @@ end
 desc "Run a local server"
 task :server do
    Rake::Task[INDEX].execute
-   system('bin/jekyll', '--server')
+   system('bin/jekyll', '--server', '--auto')
 end
 
 task :default => :site
