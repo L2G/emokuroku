@@ -1,14 +1,21 @@
 require 'gemoji'
 
 # Set BOWLDERIZE true to omit middle fingers and potty-mouthed language
-BOWLDERIZE = true
+BOWLDERIZE = false
 
 NSFW = %w( fu shit )
 
 theme = {
     'Zodiac' => %w(
-        aries taurus gemini cancer leo virgo libra scorpio sagittarius capricorn
-        aquarius pisces
+        aries taurus gemini cancer leo virgo libra scorpius sagittarius
+        capricorn aquarius pisces
+    ),
+    'Ideographs' => %w(
+        accept congratulations ideograph_advantage koko sa secret u5272 u5408
+        u55b6 u6307 u6708 u6709 u6e80 u7121 u7533 u7981 u7a7a white_flower
+    ),
+    'Hands' => %w(
+        +1 -1
     )
 }
 
@@ -25,26 +32,17 @@ task INDEX do
 layout: default
 title: emokuroku
 ---
-<table>
          END_HEAD
 
          emoji_list = Emoji.names
          emoji_list -= NSFW if BOWLDERIZE
 
-         emoji_list.each_slice(5) do |row|
-            index.print '<tr>'
-            row.each do |name|
-               index.print "<td>:#{name}:</td>"
-            end
-            index.puts '</tr>'
-            index.print '<tr>'
-            row.each do |name|
-               index.print "<td>#{name}</td>"
-            end
-            index.puts '</tr>'
+         theme.each_pair do |name, theme_elements|
+            index.print generate_index_block(name, theme_elements)
+            emoji_list = emoji_list - theme_elements
          end
 
-         index.puts '</table>'
+         index.print generate_index_block('Unclassified emoji', emoji_list)
       end
    end
 end
@@ -63,4 +61,25 @@ end
 
 task :default => :site
 
-# vim:sw=3:
+#############################################################################
+private
+
+def generate_index_block(name, elements)
+   out = "<h2>#{name}</h2>\n<table>\n"
+
+   elements.to_a.each_slice(5) do |row|
+      out += '<tr>'
+      row.each do |name|
+         out += "<td>:#{name}:</td>"
+      end
+      out +=  "</tr>\n<tr>"
+      row.each do |name|
+         out += "<td>#{name}</td>"
+      end
+      out += "</tr>\n"
+   end
+
+   out += "</table>\n"
+end
+
+# vim:ts=3:sw=3:et:
