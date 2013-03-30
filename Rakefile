@@ -12,9 +12,20 @@ title: emokuroku
 ---
 <table>
       END_HEAD
-      Emoji.names.each_with_index do |name|
-         index.puts "<tr><td>#{name}</td><td>:#{name}:</td></tr>"
+      Emoji.names.each_slice(8) do |row|
+         index.print '<tr>'
+         row.each do |name|
+            index.print "<td>:#{name}:</td>"
+         end
+         index.puts '</tr>'
+         index.print '<tr>'
+         row.each do |name|
+            index.print "<td>#{name}</td>"
+         end
+         index.puts '</tr>'
       end
+
+      index.puts '</table>'
    end
 end
 
