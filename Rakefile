@@ -11,8 +11,10 @@ theme = {
         capricorn aquarius pisces
     ),
     'Ideographs' => %w(
-        accept congratulations ideograph_advantage koko sa secret u5272 u5408
-        u55b6 u6307 u6708 u6709 u6e80 u7121 u7533 u7981 u7a7a white_flower
+        accept congratulations secret
+        koko sa
+        u5272 u5408 u55b6 u6307 u6708 u6709 u6e80 u7121 u7533 u7981 u7a7a
+        white_flower ideograph_advantage
     ),
     'Hands' => %w(
         +1 -1
