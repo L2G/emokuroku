@@ -67,10 +67,10 @@ task :default => :site
 private
 
 def generate_index_block(name, elements)
-   out = "<h2>#{name}</h2>\n"
+   out = "<h2>#{name}</h2>\n<div class='#{name.downcase.gsub(/ /,'_')}'>\n"
 
-   elements.each do |name|
-      out += "<table><caption>#{name}</caption><td>:#{name}:</td></table>\n"
+   elements.each do |element|
+      out += "<table><caption>#{element}</caption><td>:#{element}:</td></table>\n"
    end
    out
 end
