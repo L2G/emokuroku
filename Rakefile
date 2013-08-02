@@ -45,7 +45,12 @@ end
 desc "Run a local server"
 task :server do
    Rake::Task[INDEX].execute
-   system('bin/jekyll', '--server', '--auto')
+   if (ENV['PORT'] and ENV['IP'])
+      # Probably running on Cloud9
+      system('rackup', '-o', ENV['IP'], '-p', ENV['PORT'])
+   else
+      system('bin/jekyll', '--server', '--auto')
+   end
 end
 
 task :default => :site
