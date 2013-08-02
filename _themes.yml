@@ -130,6 +130,21 @@ Shapes:
     - white_medium_small_square
     - black_small_square
     - white_small_square
+Moons:
+    - moon
+    - crescent_moon
+    - first_quarter_moon
+    - full_moon
+    - last_quarter_moon
+    - new_moon
+    - first_quarter_moon_with_face
+    - full_moon_with_face
+    - last_quarter_moon_with_face
+    - new_moon_with_face
+    - waxing_crescent_moon
+    - waxing_gibbous_moon
+    - waning_crescent_moon
+    - waning_gibbous_moon
 Zodiac:
     - aries
     - taurus
