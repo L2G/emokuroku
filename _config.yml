@@ -1,1 +1,2 @@
+exclude: ['Gemfile', 'Gemfile.lock', 'Rakefile', 'bin', 'config.ru']
 emoji_dir: images/emoji
