@@ -36,10 +36,15 @@ title: emokuroku
    end
 end
 
+desc "Run Bundler to install gems and prep the bin directory"
+task :bundler => ['Gemfile', 'Gemfile.lock'] do
+   system('bundler', 'install', '--binstubs')
+end
+
 desc "Build the site"
 task :site do
    Rake::Task[INDEX].execute
-   system('bin/jekyll')
+   system('bin/jekyll', 'build')
 end
 
 desc "Run a local server"
@@ -47,9 +52,9 @@ task :server do
    Rake::Task[INDEX].execute
    if (ENV['PORT'] and ENV['IP'])
       # Probably running on Cloud9
-      system('rackup', '-o', ENV['IP'], '-p', ENV['PORT'])
+      system('bin/rackup', '-o', ENV['IP'], '-p', ENV['PORT'])
    else
-      system('bin/jekyll', '--server', '--auto')
+      system('bin/jekyll', 'server', '--auto')
    end
 end
 
