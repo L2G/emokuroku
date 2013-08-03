@@ -69,6 +69,7 @@ def generate_index_block(name, elements)
    elements.each do |element|
       out += "<table><caption>#{element}</caption><td>:#{element}:</td></table>\n"
    end
+   out += "</div>\n"
    out
 end
 
